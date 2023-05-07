@@ -1,2 +1,2 @@
 
-(hyperlink)[www.google.com]
+[hyperlink](www.google.com)
