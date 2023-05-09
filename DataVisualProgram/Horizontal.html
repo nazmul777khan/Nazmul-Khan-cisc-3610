@@ -1,0 +1,28 @@
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  </head>
+  
+<canvas id="bar-chart-horizontal" width="800" height="450"></canvas>
+
+<script>
+new Chart(document.getElementById("bar-chart-horizontal"), {
+    type: 'horizontalBar',
+    data: {
+        labels: ["Facebook", "Youtube", "Instagram", "TikTok", "Twitter","Reddit","Snapchat"],
+      datasets: [
+        {
+          label: "Users (millions)",
+          backgroundColor: ["#0000FF", "#DC143C","#9400D3","#000000","#00BFFF","#FF4500","#FFFF00"],
+          data: [2853,2291,1386,732,397,430,514]
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Social Media Popularity (millions)'
+      }
+    }
+});
+</script>

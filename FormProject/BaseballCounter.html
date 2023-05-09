@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-img {
+  /* The image used */
+  background-image: url("img_nature.jpg");
+
+  min-height: 475px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Add styles to the form container */
+.container {
+  position: absolute;
+  right: 0;
+  margin: 20px;
+  max-width: 300px;
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=number] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+select {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+<h2>Baseball</h2>
+<div class="bg-img">
+  <form class="container">
+    <h1>Counter</h1>
+    <p>
+      <label for="balls">Balls:</label>
+      <input type="number" id="balls" min="0" value="0">
+    </p>
+    <p>
+      <label for="strikes">Strikes:</label>
+      <input type="number" id="strikes" min="0" value="0">
+    </p>
+    <p>
+      <input type="radio" id="home" name="team" value="home" checked>
+      <label for="home">Home Team</label>
+      <input type="radio" id="away" name="team" value="away">
+      <label for="away">Away Team</label>
+    </p>
+    <p>
+      <input type="checkbox" id="top" name="inning" value="top" checked>
+      <label for="top">Top of Inning</label>
+      <input type="checkbox" id="bottom" name="inning" value="bottom">
+      <label for="bottom">Bottom of Inning</label>
+    </p>
+    <p>
+      <button id="reset">Reset</button>
+    </p>
+  </form>
+</div>
+
+<script>
+  // retrieve saved values or initialize to defaults
+  let balls = parseInt(localStorage.getItem("balls")) || 0;
+  let strikes = parseInt(localStorage.getItem("strikes")) || 0;
+  let team = localStorage.getItem("team") || "home";
+  let inning = localStorage.getItem("inning") || "top";
+  
+  // update UI with initial values
+  document.getElementById("balls").value = balls;
+  document.getElementById("strikes").value = strikes;
+  document.getElementById(team).checked = true;
+  document.getElementById(inning).checked = true;
+  
+  // attach event listeners to update values and save to local storage
+  document.getElementById("balls").addEventListener("change", function() {
+    balls = parseInt(this.value);
+    localStorage.setItem("balls", balls);
+  });
+  
+  document.getElementById("strikes").addEventListener("change", function() {
+    strikes = parseInt(this.value);
+    localStorage.setItem("strikes", strikes);
+  });
+  
+  document.getElementsByName("team").forEach(function(radio) {
+    radio.addEventListener("change", function() {
+      team = this.value;
+      localStorage.setItem("team", team);
+    });
+  });
+  
+  document.getElementsByName("inning").forEach(function(checkbox) {
+    checkbox.addEventListener("change", function() {
+      inning = this.value;
+      localStorage.setItem("inning", inning);
+    });
+  });
+  
+  // attach event listener to reset button to clear local storage and reset values
+  document.getElementById("reset").addEventListener("click", function() {
+    localStorage.clear();
+    balls = 0;
+    strikes = 0;
+    team = "home";
+    inning = "top";
+    document.getElementById("balls").value = balls;
+    document.getElementById("strikes").value = strikes;
+    document.getElementById(team).checked = true;
+    document.getElementById(inning).checked = true;
+  });
+</script>
+</body>
+</html>

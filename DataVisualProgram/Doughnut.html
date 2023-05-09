@@ -1,0 +1,27 @@
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  </head>
+  
+<canvas id="doughnut-chart" width="800" height="450"></canvas>
+
+<script>
+new Chart(document.getElementById("doughnut-chart"), {
+    type: 'doughnut',
+    data: {
+      labels: ["Facebook", "Youtube", "Instagram", "TikTok", "Twitter","Reddit","Snapchat"],
+      datasets: [
+        {
+          label: "Users (millions)",
+          backgroundColor: ["#0000FF", "#DC143C","#9400D3","#000000","#00BFFF","#FF4500","#FFFF00"],
+          data: [2853,2291,1386,732,397,430,514]
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Social Media Popularity (millions)'
+      }
+    }
+});
+</script>
